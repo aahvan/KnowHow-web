@@ -48,6 +48,7 @@
 		"mammoth": "^1.7.1",
 		"marked": "^4.3.0",
 		"material-icons": "^1.13.11",
+		"mermaid": "^11.2.1",
 		"papaparse": "^5.4.1",
 		"pdfjs-dist": "^3.5.141",
 		"preline": "^1.8.0",

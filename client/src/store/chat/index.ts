@@ -20,7 +20,11 @@ import {
 	resetComplete,
 	updateBlogContent,
 	getBlogContent,
-	setPromptTemplate
+	setPromptTemplate,
+	getPromptTemplate,
+	resetPromptTemplate,
+	updateDiagramContent,
+	getDiagramContent
 } from './store.js';
 import { sendMessage as sendStreamingMessage } from './stream';
 import { sendMessage as sendSyncMessage } from './sync';
@@ -52,5 +56,9 @@ export {
 	resetComplete,
 	updateBlogContent,
 	getBlogContent,
-	setPromptTemplate
+	setPromptTemplate,
+	getPromptTemplate,
+	resetPromptTemplate,
+	updateDiagramContent,
+	getDiagramContent
 };

@@ -51,6 +51,7 @@ export interface ChatState {
 	isCompleted?: boolean;
 	blogContent?: string;
 	activePrompt?: string;
+	diagramContent?: string;
 }
 
 const INITIAL_STATE: ChatState = {
@@ -68,7 +69,8 @@ const INITIAL_STATE: ChatState = {
 	docIdList: [],
 	isCompleted: false,
 	blogContent: '',
-	activePrompt: ''
+	activePrompt: '',
+	diagramContent: ''
 };
 
 const store = writable<ChatState>(INITIAL_STATE);
@@ -233,12 +235,30 @@ const getPromptTemplate = () => {
 			return `\nAnd follow this below format while generating user story\n**Title**: [Insert User Story Title Here]\n**Acceptance criteria** :\n[Insert Acceptance criteria Here]\n**Functional Test Cases**: \n[Insert Functional Test Cases Here]`;
 		case 'Epic':
 			return `\nAnd follow this below format while generating the Epic\nEpic Name: [Clear and descriptive name for the Epic]\nEpic Summary: [A brief summary of what this epic is about, covering the main objective and expected outcome.]\nEpic Description:\n1. Objective: [Describe the primary objective of this epic. What are you trying to achieve? Why is this epic important?]\n2. Problem Statement: [Clearly state the problem or challenge this epic is addressing. Why is this problem worth solving?]\n3. Scope: [Define the boundaries of the epic. What will be included and what will not be included? Mention any key features, components, or tasks that will fall under this epic.]\n4. Success Criteria/Definition of Done: [What are the measurable outcomes or criteria that will indicate this epic is complete and successful?]\n5. Dependencies: [Identify any dependencies on other epics, tasks, teams, or external factors that could affect the completion of this epic.]\n6. Risks & Mitigations: [Describe any potential risks associated with this epic and how you plan to mitigate them.]\n7. Timeline & Milestones:[Provide an estimated timeline for the epic, including key milestones and deadlines.]\n8. Stakeholders: [Identify the key stakeholders involved in this epic, such as team members, product owners, or external parties.]`;
+		case 'Diagram':
+			return `\nGenerate a corresponding mermaid code.`;		
 		default:
 			return `\nGenerate comprehensive answer for the user query.`;
 	}
 };
 const resetPromptTemplate =()=>{
 	set({ activePrompt: '' });
+}
+
+const updateDiagramContent = (content: string) => {
+	// Create a temporary DOM element to parse the HTML string
+	const tempDiv = document.createElement('div');
+	tempDiv.innerHTML = content;
+	// Find the pre element with class 'language-mermaid'
+	const mermaidElement = tempDiv.querySelector('pre code.language-mermaid');
+	if (mermaidElement) {
+		// Get the text content of the element
+		const mermaidContent = mermaidElement?.textContent.trim();
+		set({ diagramContent: mermaidContent });
+	}
+};
+const getDiagramContent = () => {
+	return get(store).diagramContent;
 }
 export {
 	store,
@@ -270,5 +290,7 @@ export {
 	getBlogContent,
 	setPromptTemplate,
 	getPromptTemplate,
-	resetPromptTemplate
+	resetPromptTemplate,
+	updateDiagramContent,
+	getDiagramContent
 };
