@@ -4,7 +4,7 @@
 	import { setPromptTemplate } from '$s/chat';
 	import Hamburger from '$c/Icons/Hamburger.svelte';
 
-    let prompts: string[] = ["User Story", "Epic"];
+    let prompts: string[] = ["User Story", "Epic", "Diagram"];
 	let isOpen = false;
 	export let resetPromptFlag: Function;
 
