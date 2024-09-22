@@ -1,12 +1,13 @@
 
 <script lang="ts">
 
-    import { updateBlogContent } from '$s/chat/index';
+    import { updateBlogContent, updateDiagramContent } from '$s/chat/index';
 
     export let blogContent:string;
 
     function handleClick() {
-        updateBlogContent(blogContent)
+        // updateBlogContent(blogContent)
+		updateDiagramContent(blogContent)
     }
 </script>
 

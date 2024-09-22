@@ -1,3 +1,4 @@
+
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
@@ -11,9 +12,11 @@ prompt = PromptTemplate(
     Analyze the Question text and parse the following information user story Title, Acceptance Criteria, Functional Test Cases.
      It will generate response in the below example format {{
                             "title": "title",
+                            "description": "description",
                             "acceptance_criteria": "Acceptance Criteria",
                             "functional_test_cases": "Functional Test Cases"
-                            }}. Generate Acceptance Criteria and Functional Test Cases as single string. The json object without stingification and  no additional text.`
+                            }}. Generate description, Acceptance Criteria and Functional Test Cases as single string. Don't change or improvised the orginal text.
+                              The json object without stingification and  no additional text.`
     Question: {question} 
     """,
     input_variables=["question"],
@@ -28,7 +31,7 @@ def parse_ticket(ticket_text):
     jira_issue = {
         "fields": {
             "project": {
-                "key": "SCRUM"
+                "key": "SSP"
             },
             "summary": ticket_response["title"],
             "description": {
@@ -40,6 +43,8 @@ def parse_ticket(ticket_text):
                         "content": [
                             {
                                 "text": (
+                                    "\n Description: \n"
+                                    f"{ticket_response["description"]}\n"
                                     "\n Acceptance Criteria: \n"
                                     f"{ticket_response["acceptance_criteria"]}\n"
                                     "Functional Test Cases: \n"
