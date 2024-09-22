@@ -60,21 +60,12 @@
 	const documentExt = docs.document_ext;
 
 	function handleSubmit(content: string, useStreaming: boolean) {
-		if (
-			content.toLowerCase().indexOf('image') > 0 ||
-			content.toLowerCase().indexOf('picture') > 0
-		) {
-			sendMessage(
-				{ role: 'user', content },
-				{ useStreaming: false, documentId: docs.id, image: true }
-			);
-		} else {
-			sendMessage(
-				{ role: 'user', content },
-				{ useStreaming, documentId: docs.id, image: false }
-			);
-		}
+		sendMessage(
+			{ role: 'user', content },
+			{ useStreaming, documentId: docs.id, image: false }
+		
 	}
+
 	function handleSearch() {
 		goto('/openChat');
 	}
