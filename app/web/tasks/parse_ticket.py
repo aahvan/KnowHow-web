@@ -47,8 +47,6 @@ def parse_ticket(ticket_text):
                                     f"{ticket_response["description"]}\n"
                                     "\n Acceptance Criteria: \n"
                                     f"{ticket_response["acceptance_criteria"]}\n"
-                                    "Functional Test Cases: \n"
-                                    f"{ticket_response["functional_test_cases"]}"
                                 ),
                                 "type": "text"
                             }

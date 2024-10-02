@@ -121,7 +121,8 @@ export const sendMessage = async (userMessage: Message, opts: MessageOptions)=> 
 			response = await fetch(`/api/conversations/${conversation.id}/messages?stream=true`, {
 				method: 'POST',
 				body: JSON.stringify({
-					input: userMessage.content + getPromptTemplate() ,
+					input: userMessage.content,
+					template: getPromptTemplate(),
 					docList: getDocIdList()
 				}),
 				credentials: 'include',

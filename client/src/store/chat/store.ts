@@ -236,7 +236,7 @@ const getPromptTemplate = () => {
 		case 'Epic':
 			return `\nAnd follow this below format while generating the Epic\nEpic Name: [Clear and descriptive name for the Epic]\nEpic Summary: [A brief summary of what this epic is about, covering the main objective and expected outcome.]\nEpic Description:\n1. Objective: [Describe the primary objective of this epic. What are you trying to achieve? Why is this epic important?]\n2. Problem Statement: [Clearly state the problem or challenge this epic is addressing. Why is this problem worth solving?]\n3. Scope: [Define the boundaries of the epic. What will be included and what will not be included? Mention any key features, components, or tasks that will fall under this epic.]\n4. Success Criteria/Definition of Done: [What are the measurable outcomes or criteria that will indicate this epic is complete and successful?]\n5. Dependencies: [Identify any dependencies on other epics, tasks, teams, or external factors that could affect the completion of this epic.]\n6. Risks & Mitigations: [Describe any potential risks associated with this epic and how you plan to mitigate them.]\n7. Timeline & Milestones:[Provide an estimated timeline for the epic, including key milestones and deadlines.]\n8. Stakeholders: [Identify the key stakeholders involved in this epic, such as team members, product owners, or external parties.]`;
 		case 'Diagram':
-			return `\nGenerate a corresponding mermaid code.`;		
+			return `\nGenerate a corresponding mermaid code. If you have mermaid code before in the context apply change on top of that as per the user request. Do not generate new diagram all together.`;		
 		default:
 			return `\nGenerate comprehensive answer for the user query.`;
 	}

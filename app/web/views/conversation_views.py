@@ -32,14 +32,15 @@ def create_conversation():
 def create_message(conversation):
     input = request.json.get("input")
     docList = request.json.get("docList")
+    template = request.json.get("template")
     streaming = request.args.get("stream", False)
-
+    query = f"{input} Additional Instructions: {template}"
     document = conversation.document
-    docIdList = [];
+    docIdList = []
     if not docList:
-          docIdList.append(document.id);
+          docIdList.append(document.id)
     else:
-        docIdList = docList.copy();
+        docIdList = docList.copy()
     char_args = ChatArgs(
         conversation_id=conversation.id,
         document_id=docIdList,
@@ -57,10 +58,10 @@ def create_message(conversation):
         
         if streaming:
             return Response(
-                stream_with_context(chat.stream(input)), mimetype="text/event-stream"
+                stream_with_context(chat.stream(query)), mimetype="text/event-stream"
             )
         else:
-            return jsonify({"role":"assistant", "content": chat.run(input)})
+            return jsonify({"role":"assistant", "content": chat.run(query)})
     else:
        csv_agent = build_csv_agent(g.user.id, document.name, char_args)
        response = csv_agent.run(build_query(input))

@@ -17,10 +17,13 @@ class SqlMessageHistory(BaseChatMessageHistory, BaseModel):
         return chat_history
 
     def add_message(self, message):
+        msg = message.content
+        if message.type == "human":
+           msg = message.content.split("Additional Instructions:")[0].strip()
         return add_message_to_conversation(
             conversation_id=self.conversation_id,
             role=message.type,
-            content=message.content
+            content=msg
         )
 
     def clear(self):

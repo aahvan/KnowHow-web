@@ -30,23 +30,3 @@ def process_document(document_id, file_extension):
 
         else:
             raise ValueError("Invalid file extension")
-    # NOTE: Generate the summary of the document with predefined prompts:
-    # print("Generating summary with custom prompt::::")
-    # prompts = get_analyzer_prompt()
-    # NOTE: NO need for converation id but still keeping it for consistency with TODO:refactor
-    # conversation_id=str(uuid.uuid4())
-    # char_args = ChatArgs(
-    #     conversation_id=conversation_id,
-    #     document_id=document.id,
-    #     streaming=False,
-    #     metadata={
-    #         "conversation_id": conversation_id,
-    #         "document_id": document.id,
-    #         "user_id": g.user.id
-    #     }
-    # )
-    # chat = build_chat(char_args)
-    # # NOTE: Looping through prompts and generate response
-    # for prompt in prompts:
-    #     content = chat.invoke(prompt["prompt"])["answer"]
-    #     AnalyzeResults.create(document_id=document.id, prompt=prompt["analyst_input"], content=content)
