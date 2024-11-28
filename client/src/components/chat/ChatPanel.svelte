@@ -24,7 +24,7 @@
 
 	function handleSubmit(event: CustomEvent<string>) {
 		if (onSubmit) {
-			onSubmit(event.detail, useStreaming);
+			onSubmit(event.detail, true);
 			showPrompt = false
 		}
 	}
