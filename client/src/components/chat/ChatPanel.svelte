@@ -45,7 +45,7 @@
 	class="flex flex-col h-full bg-slate-50 border rounded-xl shadow"
 >
 	<div class="rounded-lg border-b px-3 py-2 flex flex-row items-center justify-between">
-		<div class="flex">
+		<div class="flex gap-1">
 			
 			<button class="rounded text-sm border border-blue-500 px-2 py-0.5 p-2" on:click={handleNewChat}
 				>New Chat</button
@@ -84,6 +84,8 @@
 		border: 1px solid #f4e6e6;
 		margin-bottom: 10px;
 	}
-
+	.gap-1{
+		gap: 1rem
+	}
 </style>
 
